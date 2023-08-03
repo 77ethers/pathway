@@ -21,6 +21,10 @@ class User(models.Model):
     last_interaction_timestamp = models.DateTimeField(default=timezone.now)
 
 
+class Curriculum(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    curriculum_text = models.TextField()
+
 class LearningPathway(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pathway_text = models.TextField()
