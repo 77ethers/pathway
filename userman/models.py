@@ -13,7 +13,7 @@ class User(models.Model):
     target_date = models.DateField()
     current_skill_level = models.IntegerField()
     sub_skills = models.TextField()  # store as comma-separated values or JSON
-    daily_time_dedication = models.CharField(max_length=5)
+    daily_time_dedication = models.CharField(max_length=10)
     preferred_learning_time = models.CharField(max_length=10)
     learning_preference = models.CharField(max_length=50)
     progress_tracking_preference = models.BooleanField(default=False)
@@ -50,8 +50,10 @@ class DailyTask(models.Model):
 
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    notification_slug = models.CharField(max_length=30, blank=True)
     notification_text = models.TextField()
     sent_timestamp = models.DateTimeField(auto_now_add=True)
+    sent = models.BooleanField(default=False)
     feedback = models.TextField(null=True, blank=True)  # nullable, can be filled later
     feedback_timestamp = models.DateTimeField(null=True, blank=True)  # nullable
 
