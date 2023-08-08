@@ -6,7 +6,7 @@ openai.api_key = "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"
 
 def curriculum_generator(user_data):
     completion = openai.ChatCompletion.create(
-    model="gpt-4-0613",
+    model="gpt-3.5-turbo-16k-0613",
     messages=[
         {"role": "system", "content": prompts["curriculum_steps"]},
         {"role": "user", "content": json.dumps(user_data)}
@@ -17,7 +17,7 @@ def curriculum_generator(user_data):
 
 def pathway_builder(curriculum_text):
     completion = openai.ChatCompletion.create(
-    model="gpt-4-0613",
+    model="gpt-3.5-turbo-16k-0613",
     messages=[
         {"role": "system", "content": "You are an expert learning pathway creator from 'Team Pathway'. You build learning pathway document for our customers based on the analysed curriculum requirements. This document is for them to keep, revisit and stay motivated."},
         {"role":"user", "content": prompts["document_create"]},
@@ -51,8 +51,20 @@ def generate_introductory_message(user_data):
     message = introductory_message(user_data=user_data)
     print(message)
     completion = openai.ChatCompletion.create(
-    model="gpt-4-0613",
+    model="gpt-3.5-turbo-16k-0613",
     messages=message
     
     )
+    return(completion.choices[0].message["content"])
+
+@system_message_decorator
+def daily_plan_builder(user_journey, user_data):
+    completion = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo-16k-0613",
+    messages=[
+        {"role": "system", "content": "Here's the learning journey created for the user:\n"+user_journey},
+        {"role":"user", "content": prompts["daily_plan_generator"]},
+    ]
+    )
+    print("Journey created!")
     return(completion.choices[0].message["content"])

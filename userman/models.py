@@ -31,6 +31,17 @@ class LearningPathway(models.Model):
     generation_timestamp = models.DateTimeField(auto_now_add=True)
 
 
+class DailyGoal(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+    goal_text = models.TextField()
+    is_completed = models.BooleanField(default=False)
+    
+    # class Meta:
+    #     unique_together = ['user', 'date']
+
+
+
 class Interaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     interaction_text = models.TextField()

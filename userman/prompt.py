@@ -5,7 +5,9 @@ prompts = {
    "intro_notification" : "Generate a welcoming whatsapp message for the customer telling them that we have recieved their request and are working hard to create super personalised learning pathway for their goal, also, keep the tone motivated, short and add emojies to make it fun to read.",
    "path_template" : "Generate a message for the customer informing him that his personalized learning path is ready and should help him reach his goal by the target_date. Also include a note that the journey is adaptable and provide a placeholder for the document link.",
    "motiv_template" : "Generate a motivational message for the customer encouraging him to stay focused and motivated in his learning journey.",
-   "feedback_template" : "Generate a whatsapp message for the customer requesting his feedback on the learning path and any suggestions for improvements."
+   "feedback_template" : "Generate a whatsapp message for the customer requesting his feedback on the learning path and any suggestions for improvements.",
+
+   "daily_plan_generator":"Could you provide a comprehensive day-by-day breakdown for the entire duration to facilitate this learning journey? provide learning materials and daily goals for each day as well. reply in json format ONLY. thanks"
 
 
 
